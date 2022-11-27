@@ -1,9 +1,13 @@
 import React from "react";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
+import { useContext } from "react";
+import { MobileNavContext } from "../context/NavContext";
 
 const Navbar = () => {
+  const { isOpen, dispatch } = useContext(MobileNavContext);
   return (
     <div className="navbar">
       <div className="left">
@@ -12,7 +16,10 @@ const Navbar = () => {
       <div className="right">
         <VideocamIcon className="icon" />
         <PersonAddAlt1Icon className="icon" />
-        <MoreHorizIcon className="icon" />
+        <MenuIcon
+          className="icon mobile"
+          onClick={() => dispatch({ type: "TOGGLE" })}
+        />
       </div>
     </div>
   );

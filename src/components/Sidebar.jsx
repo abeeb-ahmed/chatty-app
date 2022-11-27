@@ -1,6 +1,9 @@
 import React from "react";
-
+import CancelIcon from "@mui/icons-material/Cancel";
+import { useContext } from "react";
+import { MobileNavContext } from "../context/NavContext";
 const Sidebar = () => {
+  const { dispatch } = useContext(MobileNavContext);
   return (
     <div className="sidebar">
       <div className="header">
@@ -16,6 +19,10 @@ const Sidebar = () => {
           <span>John</span>
           <button>Sign out</button>
         </div>
+        <CancelIcon
+          className="closeNav"
+          onClick={() => dispatch({ type: "CLOSE" })}
+        />
       </div>
       <div className="sidebarContainer">
         <div className="search">
