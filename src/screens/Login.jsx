@@ -22,6 +22,7 @@ const Login = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
+        setError(true);
         setErrorMessage(error.message);
       });
     setLoading(false);
@@ -47,7 +48,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button disabled={loading}>Sign in</button>
-          {error && <span className="errorMessage">{errorMessage}</span>}
+          {error && (
+            <span className="errorMessage">
+              {errorMessage || "Something went wrong!"}
+            </span>
+          )}
         </form>
         <div className="formBottom">
           <span>
