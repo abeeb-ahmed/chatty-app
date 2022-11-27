@@ -21,6 +21,28 @@ const Sidebar = () => {
         <div className="search">
           <input type="text" placeholder="Find a user" />
         </div>
+        <div className="users">
+          <div className="user">
+            <img
+              src="https://media.istockphoto.com/id/805012064/photo/portrait-of-mature-hispanic-man.jpg?s=612x612&w=0&k=20&c=AfNa1ay8LPzaO-NOJZspqULvYavyhXg4rnJ9U_tvJY4="
+              alt=""
+            />
+            <div className="text">
+              <p>Jane</p>
+              <span>Hello</span>
+            </div>
+          </div>
+          <div className="user">
+            <img
+              src="https://media.istockphoto.com/id/805012064/photo/portrait-of-mature-hispanic-man.jpg?s=612x612&w=0&k=20&c=AfNa1ay8LPzaO-NOJZspqULvYavyhXg4rnJ9U_tvJY4="
+              alt=""
+            />
+            <div className="text">
+              <p>Jane</p>
+              <span>Hello</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

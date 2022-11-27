@@ -1,9 +1,14 @@
+// colors
 $primary-color: #a7bcff;
 $secondary-color: #5d5b8d;
 $tertiary-color: #3e3c61;
+$dark-blue: #2f2d52;
+$light-blue: #8d84f1;
+$light: #ddddf7;
 
+// media query
 @mixin mobile {
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     @content;
   }
 }
@@ -25,6 +30,7 @@ body {
   width: 100%;
 }
 
+// Auth form
 .formContainer {
   background-color: $primary-color;
   width: 100%;
@@ -113,6 +119,7 @@ body {
   }
 }
 
+// home page
 .home {
   background-color: $primary-color;
   width: 100%;
@@ -128,9 +135,24 @@ body {
     display: flex;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 10px 10px 14px -5px rgba(0, 0, 0, 0.17);
+    -webkit-box-shadow: 10px 10px 14px -5px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: 10px 10px 14px -5px rgba(0, 0, 0, 0.17);
+
+    @include mobile {
+      background-color: #fff;
+      height: 100%;
+      width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+    }
 
     .homeSidebar {
       flex: 1;
+
+      @include mobile {
+        display: none;
+      }
     }
 
     .homeMessages {
@@ -139,8 +161,9 @@ body {
   }
 }
 
+// sidebar component
 .sidebar {
-  background-color: $secondary-color;
+  background-color: $tertiary-color;
   height: 100%;
 
   color: #fff;
@@ -148,12 +171,15 @@ body {
   .header {
     display: flex;
     justify-content: space-between;
-    background-color: $tertiary-color;
-    padding: 20px 10px;
+    background-color: $dark-blue;
+    height: 50px;
+    padding: 10px;
     color: lightgray;
 
     .left {
       font-weight: bold;
+      display: flex;
+      align-items: center;
     }
 
     .right {
@@ -185,9 +211,8 @@ body {
   }
 
   .sidebarContainer {
-    padding: 10px;
-
     .search {
+      padding: 10px;
       input {
         background-color: transparent;
         outline: none;
@@ -200,6 +225,182 @@ body {
         &::placeholder {
           color: lightgrey;
         }
+      }
+    }
+
+    .users {
+      display: flex;
+      flex-direction: column;
+
+      .user {
+        padding: 10px;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        cursor: pointer;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        span {
+          font-size: 14px;
+          color: lightgrey;
+        }
+
+        &:hover {
+          background-color: $dark-blue;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+// navbar component
+.navbar {
+  background-color: $secondary-color;
+  height: 50px;
+  padding: 10px;
+  color: lightgray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .right {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+// input component
+.input {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 50px;
+  padding: 10px;
+  .left {
+    width: 100%;
+    input {
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  .right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-self: flex-end;
+
+    .icon {
+      color: lightgray;
+    }
+
+    button {
+      background-color: $light-blue;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 5px 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+}
+
+// messages component
+.messages {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  .messagesInput {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+  }
+
+  .messagesContainer {
+    height: calc(100% - 140px);
+    background-color: $light;
+    overflow-y: scroll;
+    bottom: 0;
+  }
+}
+
+// message component
+.message {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  .left {
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: 100%;
+    }
+
+    span {
+      font-size: 12px;
+      color: gray;
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: flex-start;
+    p {
+      border-radius: 0 10px 10px 10px;
+      padding: 10px;
+      background-color: #fff;
+      max-width: 60%;
+
+      width: fit-content;
+
+      font-size: 14px;
+    }
+
+    img {
+      max-height: 200px;
+      object-fit: cover;
+    }
+  }
+
+  &.sender {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+
+    .right {
+      display: flex;
+      align-items: flex-end;
+
+      p {
+        border-radius: 10px 0 10px 10px;
+        padding: 10px;
+        background-color: $light-blue;
+        max-width: 60%;
+        width: fit-content;
+        color: white;
+        font-size: 14px;
       }
     }
   }
