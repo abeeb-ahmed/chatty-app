@@ -1,7 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import Messages from "../components/Messages";
+import Sidebar from "../components/Sidebar";
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div className="home">
+      <div className="homeContainer">
+        <div className="homeSidebar">
+          <Sidebar />
+        </div>
+        <div className="homeMessages">
+          <Messages />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

@@ -8,6 +8,23 @@ $tertiary-color: #3e3c61;
   }
 }
 
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+}
+
 .formContainer {
   background-color: $primary-color;
   width: 100%;
@@ -93,5 +110,19 @@ $tertiary-color: #3e3c61;
       display: flex;
       justify-content: center;
     }
+  }
+}
+
+.home {
+  background-color: $primary-color;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .homeContainer {
+    width: 65%;
+    background-color: white;
   }
 }
