@@ -15,21 +15,23 @@ $tertiary-color: #3e3c61;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 
   h2 {
     color: $secondary-color;
+    text-align: center;
   }
 
   p {
     margin-top: 10px;
     font-size: 14px;
+    text-align: center;
   }
 
   .formWrapper {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
+    width: 250px;
 
     form {
       display: flex;
@@ -44,6 +46,21 @@ $tertiary-color: #3e3c61;
         outline: none;
       }
 
+      label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 10px;
+
+        img {
+          width: 32px;
+        }
+
+        span {
+          font-size: 14px;
+        }
+      }
+
       button {
         border: none;
         outline: none;
@@ -53,12 +70,28 @@ $tertiary-color: #3e3c61;
         font-weight: bold;
         margin-bottom: 10px;
         cursor: pointer;
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
+
+      .errorMessage {
+        color: red;
+        text-align: center;
+        margin-bottom: 5px;
       }
     }
 
     span {
       color: $secondary-color;
       font-size: 14px;
+    }
+
+    .formBottom {
+      display: flex;
+      justify-content: center;
     }
   }
 }
