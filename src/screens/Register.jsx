@@ -1,19 +1,19 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../firebase";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState("");
-  const [imgurl, setImgUrl] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,11 +51,7 @@ const Register = () => {
               });
             });
           });
-          setDisplayName("");
-          setPassword("");
-          setFile("");
-          setEmail("");
-          setLoading(false);
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -67,6 +63,7 @@ const Register = () => {
       setError(true);
       console.log(error);
     }
+    setLoading(false);
   };
   return (
     <div className="formContainer">
@@ -93,6 +90,7 @@ const Register = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <input
             type="file"
