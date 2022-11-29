@@ -6,11 +6,11 @@ import { MobileNavContext } from "../context/NavContext";
 
 const Home = () => {
   const { state } = useContext(MobileNavContext);
-  console.log(state.isOpen);
+  console.log(state);
   return (
     <div className="home">
       <div className="homeContainer">
-        <div className={`homeSidebar ${state.isOpen && "open"}`}>
+        <div className={`homeSidebar ${state?.isOpen && "open"}`}>
           <Sidebar />
         </div>
         <div className="homeMessages">

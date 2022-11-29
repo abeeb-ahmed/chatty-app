@@ -17,6 +17,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!displayName || !email || !password || !file)
+      return alert("Fill in all inputs");
     setLoading(true);
     try {
       createUserWithEmailAndPassword(auth, email, password)
@@ -35,23 +37,30 @@ const Register = () => {
           const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
           // Listen for state changes, errors, and completion of the upload.
-          uploadTask.on("state_changed", () => {
+          uploadTask.on("state_changed", async () => {
             // Upload completed successfully, now we can get the download URL
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              // update current user profile
-              updateProfile(auth.currentUser, {
-                photoURL: downloadURL,
-              });
-              //   add to users collection in firestore
-              setDoc(doc(db, "users", user.uid), {
-                uid: user.uid,
-                displayName,
-                email,
-                photoURL: downloadURL,
-              });
-            });
+            await getDownloadURL(uploadTask.snapshot.ref).then(
+              (downloadURL) => {
+                // update current user profile
+                updateProfile(auth.currentUser, {
+                  photoURL: downloadURL,
+                  displayName,
+                });
+                //   add to users collection in firestore
+                setDoc(doc(db, "users", user.uid), {
+                  uid: user.uid,
+                  displayName,
+                  email,
+                  photoURL: downloadURL,
+                });
+
+                // create user chat
+                setDoc(doc(db, "userChat", user.uid), {});
+              }
+            );
+            alert("Successfully regsitered. Go to login page");
+            navigate("/login");
           });
-          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;

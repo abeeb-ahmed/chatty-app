@@ -2,12 +2,11 @@ import React from "react";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
 import { useContext } from "react";
 import { MobileNavContext } from "../context/NavContext";
 
 const Navbar = () => {
-  const { isOpen, dispatch } = useContext(MobileNavContext);
+  const { dispatch } = useContext(MobileNavContext);
   return (
     <div className="navbar">
       <div className="left">

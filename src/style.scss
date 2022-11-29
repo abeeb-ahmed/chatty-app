@@ -158,6 +158,10 @@ body {
         flex: none;
         transform: translateX(100%);
         transition: all ease 0.3s;
+        position: static;
+        height: 100vh;
+        z-index: 99;
+        top: 0;
       }
 
       &.open {
