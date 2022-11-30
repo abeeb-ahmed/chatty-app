@@ -72,8 +72,6 @@ const Sidebar = () => {
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
 
-    dispatch({ type: "CHANGE_USER", payload: user });
-
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
 

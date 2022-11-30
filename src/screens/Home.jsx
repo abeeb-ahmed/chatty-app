@@ -6,7 +6,6 @@ import { MobileNavContext } from "../context/NavContext";
 
 const Home = () => {
   const { state } = useContext(MobileNavContext);
-  console.log(state);
   return (
     <div className="home">
       <div className="homeContainer">
