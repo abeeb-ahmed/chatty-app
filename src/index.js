@@ -4,17 +4,16 @@ import App from "./App";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ChatContextProvider } from "./context/ChatContext";
 import { MobileNavContextProvider } from "./context/NavContext";
-import "./style.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ChatContextProvider>
+  <MobileNavContextProvider>
     <AuthContextProvider>
-      <MobileNavContextProvider>
+      <ChatContextProvider>
         <React.StrictMode>
           <App />
         </React.StrictMode>
-      </MobileNavContextProvider>
+      </ChatContextProvider>
     </AuthContextProvider>
-  </ChatContextProvider>
+  </MobileNavContextProvider>
 );

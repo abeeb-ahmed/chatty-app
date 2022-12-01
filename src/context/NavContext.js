@@ -25,7 +25,7 @@ export const MobileNavContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
 
   return (
-    <MobileNavContext.Provider value={{ state, dispatch }}>
+    <MobileNavContext.Provider value={{ state, navDispatch: dispatch }}>
       {children}
     </MobileNavContext.Provider>
   );

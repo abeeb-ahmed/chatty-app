@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db, storage } from "../firebase";
+import { auth, db, storage } from "../../firebase";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -21,56 +21,42 @@ const Register = () => {
       return alert("Fill in all inputs");
     setLoading(true);
     try {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+      //Create user
+      const res = await createUserWithEmailAndPassword(auth, email, password);
 
-          //   Add images to firestore
-          /** @type {any} */
-          const metadata = {
-            contentType: "image/jpeg",
-          };
+      //Create a unique image name
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${displayName + date}`);
 
-          const date = Date.now();
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            //Update profile
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            //create user on firestore
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
 
-          const storageRef = ref(storage, `${displayName + date}`);
-          const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-
-          // Listen for state changes, errors, and completion of the upload.
-          uploadTask.on("state_changed", async () => {
-            // Upload completed successfully, now we can get the download URL
-            await getDownloadURL(uploadTask.snapshot.ref).then(
-              (downloadURL) => {
-                // update current user profile
-                updateProfile(auth.currentUser, {
-                  photoURL: downloadURL,
-                  displayName,
-                });
-                //   add to users collection in firestore
-                setDoc(doc(db, "users", user.uid), {
-                  uid: user.uid,
-                  displayName,
-                  email,
-                  photoURL: downloadURL,
-                });
-
-                // create user chat
-                setDoc(doc(db, "userChat", user.uid), {});
-              }
-            );
-            alert("Successfully regsitered. Go to login page");
-            navigate("/login");
-          });
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setError(true);
-          console.log(errorMessage);
+            //create empty user chats on firestore
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
+          } catch (error) {
+            console.log(error);
+            setError(true);
+            setLoading(false);
+          }
         });
+      });
     } catch (error) {
       setError(true);
-      console.log(error);
+      setLoading(false);
     }
     setLoading(false);
   };

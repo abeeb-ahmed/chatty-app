@@ -8,8 +8,8 @@ const Home = () => {
   const { state } = useContext(MobileNavContext);
   return (
     <div className="home">
-      <div className="homeContainer">
-        <div className={`homeSidebar ${state?.isOpen && "open"}`}>
+      <div className="container">
+        <div className={`sidebar ${state?.isOpen && "open"}`}>
           <Sidebar />
         </div>
         <div className="homeMessages">

@@ -18,120 +18,89 @@ html {
   width: 100%;
 }
 
-body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-.app {
-  height: 100%;
-  width: 100%;
-}
-
-// Auth form
 .formContainer {
-  background-color: $primary-color;
-  width: 100%;
+  background-color: #a7bcff;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  h2 {
-    color: $secondary-color;
-    text-align: center;
-  }
-
-  p {
-    margin-top: 10px;
-    font-size: 14px;
-    text-align: center;
-  }
+  justify-content: center;
 
   .formWrapper {
-    background-color: #fff;
-    padding: 30px;
+    background-color: white;
+    padding: 20px 60px;
     border-radius: 10px;
-    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    .logo {
+      color: #5d5b8d;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .title {
+      color: #5d5b8d;
+      font-size: 12px;
+    }
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 15px;
 
       input {
-        padding: 10px;
+        padding: 15px;
         border: none;
-        border-bottom: 1px solid lightgrey;
-        outline: none;
+        width: 250px;
+        border-bottom: 1px solid #a7bcff;
+        &::placeholder {
+          color: rgb(175, 175, 175);
+        }
+      }
+
+      button {
+        background-color: #7b96ec;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
       }
 
       label {
         display: flex;
         align-items: center;
-        cursor: pointer;
         gap: 10px;
+        color: #8da4f1;
+        font-size: 12px;
+        cursor: pointer;
 
         img {
           width: 32px;
         }
-
-        span {
-          font-size: 14px;
-        }
-      }
-
-      button {
-        border: none;
-        outline: none;
-        padding: 10px 15px;
-        background-color: #7b96ec;
-        color: #fff;
-        font-weight: bold;
-        margin-bottom: 10px;
-        cursor: pointer;
-
-        &:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-        }
-      }
-
-      .errorMessage {
-        color: red;
-        text-align: center;
-        margin-bottom: 5px;
       }
     }
-
-    span {
-      color: $secondary-color;
-      font-size: 14px;
-    }
-
-    .formBottom {
-      display: flex;
-      justify-content: center;
+    p {
+      color: #5d5b8d;
+      font-size: 12px;
+      margin-top: 10px;
     }
   }
 }
 
-// home page
 .home {
-  background-color: $primary-color;
-  width: 100%;
+  background-color: #a7bcff;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   @include mobile {
     display: block;
   }
 
-  .homeContainer {
+  .container {
     width: 65%;
     height: 80%;
     background-color: white;
@@ -150,9 +119,10 @@ body {
       border-radius: 0;
     }
 
-    .homeSidebar {
+    .sidebar {
       flex: 1;
-
+      background-color: #3e3c61;
+      position: relative;
       @include mobile {
         display: none;
         flex: none;
@@ -167,110 +137,83 @@ body {
       &.open {
         @include mobile {
           display: block;
-          width: 100vw;
+          position: fixed;
           transform: translateX(0);
+          transition: all ease 0.3s;
         }
       }
-    }
 
-    .homeMessages {
-      flex: 2;
-    }
-  }
-}
-
-// sidebar component
-.sidebar {
-  background-color: $tertiary-color;
-  height: 100%;
-
-  color: #fff;
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-    background-color: $dark-blue;
-    height: 50px;
-    padding: 10px;
-    color: lightgray;
-
-    .left {
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-
-      @include mobile {
-        display: none;
-      }
-    }
-
-    .right {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-
-      span {
-        font-size: 14px;
-      }
-
-      img {
-        height: 25px;
-        width: 25px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-
-      button {
-        background-color: $secondary-color;
-        border: none;
-        color: lightgray;
-        padding: 5px;
-        border-radius: 3px;
-        font-weight: 500;
-        cursor: pointer;
-      }
-    }
-    .closeNav {
-      display: none;
-
-      @include mobile {
-        display: block;
-        align-self: center;
-      }
-    }
-  }
-
-  .sidebarContainer {
-    .search {
-      padding: 10px;
-      display: flex;
-      input {
-        background-color: transparent;
-        outline: none;
-        border: none;
-        color: lightgrey;
-        flex: 1;
-        border-bottom: 1px solid gray;
-        padding: 5px;
-
-        &::placeholder {
-          color: lightgrey;
-        }
-      }
-    }
-
-    .users {
-      display: flex;
-      flex-direction: column;
-
-      .user {
+      .navbar {
+        display: flex;
+        align-items: center;
+        background-color: #141414;
+        height: 50px;
         padding: 10px;
+        justify-content: space-between;
+        color: #ddddf7;
 
+        .logo {
+          font-weight: bold;
+          @include mobile {
+            display: none;
+          }
+        }
+
+        .user {
+          display: flex;
+          gap: 10px;
+
+          img {
+            background-color: #ddddf7;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          button {
+            background-color: #5d5b8d;
+            color: #ddddf7;
+            font-size: 10px;
+            border: none;
+            cursor: pointer;
+            @include mobile {
+              position: absolute;
+              bottom: 10px;
+            }
+          }
+        }
+      }
+      .search {
+        border-bottom: 1px solid gray;
+
+        .searchForm {
+          padding: 10px;
+
+          input {
+            background-color: transparent;
+            border: none;
+            color: white;
+            outline: none;
+
+            &::placeholder {
+              color: lightgray;
+            }
+          }
+        }
+      }
+
+      .userChat {
+        padding: 10px;
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 10px;
+        color: white;
         cursor: pointer;
+
+        &:hover {
+          background-color: #2f2d52;
+        }
 
         img {
           width: 50px;
@@ -279,172 +222,136 @@ body {
           object-fit: cover;
         }
 
-        span {
-          font-size: 14px;
-          color: lightgrey;
-        }
-
-        &:hover {
-          background-color: $dark-blue;
-          border-radius: 5px;
-        }
-      }
-    }
-  }
-}
-
-// navbar component
-.navbar {
-  background-color: $secondary-color;
-  height: 50px;
-  padding: 10px;
-  color: lightgray;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  .right {
-    display: flex;
-    gap: 10px;
-
-    .icon {
-      @include mobile {
-        display: none;
-      }
-      &.mobile {
-        display: none;
-
-        @include mobile {
-          display: block;
+        .userChatInfo {
+          span {
+            font-size: 18px;
+            font-weight: 500;
+          }
+          p {
+            font-size: 14px;
+            color: lightgray;
+          }
         }
       }
     }
-  }
-}
+    .chat {
+      flex: 2;
 
-// input component
-.input {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  height: 50px;
-  padding: 10px;
-  .left {
-    width: 100%;
-    input {
-      border: none;
-      outline: none;
-      width: 100%;
-    }
-  }
-
-  .right {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-self: flex-end;
-
-    .icon {
-      color: lightgray;
-    }
-
-    button {
-      background-color: $light-blue;
-      color: #fff;
-      border: none;
-      outline: none;
-      padding: 5px 8px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-  }
-}
-
-// messages component
-.messages {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: relative;
-  width: 100%;
-
-  .messagesInput {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    background-color: #fff;
-  }
-
-  .messagesContainer {
-    height: calc(100% - 140px);
-    background-color: $light;
-    overflow-y: scroll;
-    bottom: 0;
-  }
-}
-
-// message component
-.message {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  .left {
-    display: flex;
-    flex-direction: column;
-
-    img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: 100%;
-    }
-
-    span {
-      font-size: 12px;
-      color: gray;
-    }
-  }
-
-  .right {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    align-items: flex-start;
-    p {
-      border-radius: 0 10px 10px 10px;
-      padding: 10px;
-      background-color: #fff;
-      max-width: 60%;
-
-      width: fit-content;
-
-      font-size: 14px;
-    }
-
-    img {
-      max-height: 200px;
-      object-fit: cover;
-    }
-  }
-
-  &.sender {
-    flex-direction: row-reverse;
-    justify-content: flex-start;
-
-    .right {
-      display: flex;
-      align-items: flex-end;
-
-      p {
-        border-radius: 10px 0 10px 10px;
+      .chatInfo {
+        height: 50px;
+        background-color: #5d5b8d;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 10px;
-        background-color: $light-blue;
-        max-width: 60%;
-        width: fit-content;
-        color: white;
-        font-size: 14px;
+        color: lightgray;
+      }
+
+      .chatIcons {
+        display: flex;
+        gap: 10px;
+
+        img {
+          height: 24px;
+          cursor: pointer;
+        }
+      }
+
+      .messages {
+        background-color: #ddddf7;
+        padding: 10px;
+        height: calc(100% - 160px);
+        overflow: scroll;
+
+        .message {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 20px;
+
+          .messageInfo {
+            display: flex;
+            flex-direction: column;
+            color: gray;
+            font-weight: 300;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+          .messageContent {
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            p {
+              background-color: white;
+              padding: 10px 20px;
+              border-radius: 0px 10px 10px 10px;
+              max-width: max-content;
+            }
+
+            img {
+              width: 50%;
+            }
+          }
+
+          &.owner {
+            flex-direction: row-reverse;
+
+            .messageContent {
+              align-items: flex-end;
+              p {
+                background-color: #8da4f1;
+                color: white;
+                border-radius: 10px 0px 10px 10px;
+              }
+            }
+          }
+        }
+      }
+
+      .input {
+        height: 50px;
+        background-color: white;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+          width: 100%;
+          border: none;
+          outline: none;
+          color: #2f2d52;
+          font-size: 18px;
+
+          &::placeholder {
+            color: lightgray;
+          }
+        }
+
+        .send {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          img {
+            height: 24px;
+            cursor: pointer;
+          }
+
+          button {
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            background-color: #8da4f1;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
