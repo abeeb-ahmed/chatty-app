@@ -3,14 +3,14 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/abeeb-ahmed/chatty"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/abeeb-ahmed/chatty-app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://chatty-app-1tvv.onrender.com/">View Demo</a>
     ·
-    <a href="https://github.com/abeeb-ahmed/chatty/issues">Report Bug</a>
+    <a href="https://github.com/abeeb-ahmed/chatty-app/issues">Report Bug</a>
     ·
-    <a href="https://github.com/abeeb-ahmed/chatty/issues">Request Feature</a>
+    <a href="https://github.com/abeeb-ahmed/chatty-app/issues">Request Feature</a>
   </p>
 </div>
 
@@ -111,7 +111,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Abeeb Ahmed - abeebahmed@gmail.com
 
-Project Link: [https://github.com/abeeb-ahmed/chatty](https://github.com/abeeb-ahmed/chatty)
+Project Link: [https://github.com/abeeb-ahmed/chatty-app/](https://github.com/abeeb-ahmed/chatty)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
