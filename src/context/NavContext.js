@@ -22,10 +22,10 @@ export const MobileNavContextProvider = ({ children }) => {
     }
   };
 
-  const [state, dispatch] = useReducer(authReducer, INITIAL_STATE);
+  const [state, navDispatch] = useReducer(authReducer, INITIAL_STATE);
 
   return (
-    <MobileNavContext.Provider value={{ state, navDispatch: dispatch }}>
+    <MobileNavContext.Provider value={{ state, navDispatch }}>
       {children}
     </MobileNavContext.Provider>
   );

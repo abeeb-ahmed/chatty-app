@@ -5,9 +5,11 @@ import More from "../img/more.png";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../context/ChatContext";
+import { MobileNavContext } from "../context/NavContext";
 
 const Chat = () => {
   const { data } = useContext(ChatContext);
+  const { navDispatch } = useContext(MobileNavContext);
 
   return (
     <div className="chat">
@@ -16,7 +18,11 @@ const Chat = () => {
         <div className="chatIcons">
           <img src={Cam} alt="" />
           <img src={Add} alt="" />
-          <img src={More} alt="" />
+          <img
+            src={More}
+            alt=""
+            onClick={() => navDispatch({ type: "TOGGLE" })}
+          />
         </div>
       </div>
       <Messages />
